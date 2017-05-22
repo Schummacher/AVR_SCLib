@@ -7,7 +7,7 @@
 
 #include "USART.h"
 
-void USART_Init( void )
+void USART_Init(void)
 {
 	/* Set baud rate */
 	UBRRL=(F_CPU/16/(BAUD+1))%256;
@@ -17,7 +17,7 @@ void USART_Init( void )
 	/* Set frame format: 8data, 2stop bit */
 	UCSRC = (1<<URSEL)|(1 << UCSZ1)|(1 << UCSZ0);
 }
-void USART_Transmit( unsigned char data )
+void USART_Transmit(unsigned char data)
 {
 	/* Wait for empty transmit buffer */
 	while (!( UCSRA & (1<<UDRE)));
@@ -25,7 +25,7 @@ void USART_Transmit( unsigned char data )
 	UDR = data;
 }
 
-unsigned char USART_Receive( void )
+unsigned char USART_Receive(void)
 {
 	/* Wait for data to be received */
 	while (!(UCSRA & (1<<RXC)));
