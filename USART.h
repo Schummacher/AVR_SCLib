@@ -13,9 +13,9 @@
 #define F_CPU 12000000UL
 #include <avr/interrupt.h>
 
-void USART_Init( void );
-void USART_Transmit( unsigned char data );
-unsigned char USART_Receive( void );
+void USART_Init(void);
+void USART_Transmit(unsigned char data);
+unsigned char USART_Receive(void);
 
 
 
