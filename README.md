@@ -1,4 +1,4 @@
-# AVR_SClib
+# AVR_SCLib
 
 Common library of AVR ATmega16
 -----
