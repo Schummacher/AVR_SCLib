@@ -10,7 +10,7 @@
 #define USART_H_
 
 #define BAUD 9600
-#define F_CPU 12000000UL
+#define F_CPU 8000000UL
 #include <avr/interrupt.h>
 
 void USART_Init(void);
