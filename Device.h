@@ -9,13 +9,14 @@
 #ifndef DEVICE_H_
 #define DEVICE_H_
 
-#include "ADC.h"
-#include "EEPROM.h"
-#include "I2C.h"
-#include "LCD.h"
-#include "PWM.h"
-#include "USART.h"
-#include "MyLcd.h"
+/******note off you want******/
+//#include "ADC.h"          ADC reading
+//#include "EEPROM.h"       internal reading and writeing
+//#include "I2C.h"          I2C BUS contral
+//#include "USART.h"        USART RS232 BUS contral
+//#include "LCD.h"          Basic LCD contral
+//#include "MyLcd.h"        LCD contral pro
+//#include "FFT.h"          Fast Fourier Transformation
 
 #define LSL(x, y) x=x<<y
 #define LSR(x, y) x=x>>y
