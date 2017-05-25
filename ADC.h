@@ -11,6 +11,6 @@
 
 #include "avr/io.h"
 
- unsigned int ADC_Date(unsigned char i);
+unsigned int ADC_Date(unsigned char i);
 
 #endif /* ADC_H_ */

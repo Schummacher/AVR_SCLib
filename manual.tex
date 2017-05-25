@@ -1,5 +1,6 @@
-\documentclass{article}
+\documentclass{paper}
 \usepackage{ctex}
+\usepackage{listings} 
 \title{AVR\_SCLib manual}
 \begin{document}
 \author{Schummacher S.J.F}
@@ -11,6 +12,13 @@
 作者本未想做一套轮子，但使用中深感不便，每次实现一些重复性强的功能都要重新写一遍，实在是不胜其烦就打算写一些自己用且简单粗暴的函数，但写着写着函数也就慢慢多了起来，渐渐的整理出来一些库，现在把他开源出来，希望用AVR的人可以少造一些轮子。\par
 至于为什么不用默认的README.md和Wiki嘛，我只能坦白的说我不会Markdown和Wiki只会\LaTeX
 \section{ADC}
-
-
+\subsection{ADC\_Date}
+\begin{lstlisting}[language=C]
+unsigned int ADC_Date(unsigned char i);
+\end{lstlisting}
+其中参量i是PA组的IO口数,返回左对齐的10bit采样\newline\newline
+例如我们要采PA1的样，并将ADC采样值付给变量ADC\_temp:
+\begin{lstlisting}[language=C]
+ADC_temp =  ADC_Date(1);
+\end{lstlisting}
 \end{document}
