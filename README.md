@@ -1,5 +1,5 @@
 # AVR_SCLib
-There is a manual called manual in Chinese.
+There is a manual called manual.tex in Chinese.
 
 Common library of AVR ATmega16
 -----
