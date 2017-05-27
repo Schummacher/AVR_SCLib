@@ -22,6 +22,23 @@ unsigned int ADC_Date(unsigned char i);
 \begin{lstlisting}[language=C]
 ADC_temp =  ADC_Date(1);
 \end{lstlisting}
+\section{Devich}
+Device.h里面的文件有点类似于很多人写的main.h但是我在这里还增加了一些单片机常用的一些宏定义
+\begin{lstlisting}[language=C]
+#define LSL(x, y) x=x<<y
+#define LSR(x, y) x=x>>y
+\end{lstlisting}
+把x左/右移y位并将结果付给x
+\begin{lstlisting}[language=C]
+#define MAX(a, b) a>b?a:b
+#define MIN(a, b) a<b?a:b
+\end{lstlisting}
+返回a, b中最大/小的数
+\begin{lstlisting}[language=C]
+#define SEI asm("sei");
+#define CLI asm("cli");
+\end{lstlisting}
+全局中断使能/清除
 \section{EEPROM}
 \subsection{EEPROM\_write}
 \begin{lstlisting}[language=C]
