@@ -1,4 +1,4 @@
- /*
+/*
  * ADC.h
  *
  * Created: 2016/11/14 20:05:41
@@ -14,7 +14,7 @@
 unsigned int ADC_Date(unsigned char i);
 uint16_t ADC_Average_Get(uint8_t pin);
 
-typedef union _ADC_DATE
+typedef union _ADC_DATE	
 {
 	struct
 	{
