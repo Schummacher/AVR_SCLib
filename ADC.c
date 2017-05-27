@@ -16,3 +16,15 @@ unsigned int ADC_Date(unsigned char i)
 	ADCSRA |= (1 << ADIF);				//clear ADC INTRRUPT FLAG
 	return ADCH;
 }
+
+uint16_t ADC_Average_Get(uint8_t pin)
+{
+	uint8_t temp = 0;
+	for (uint8_t i = 0; i < 8; i++)
+	{
+		uint16_t j = ADC_Date(pin);
+		j /= 8;
+		temp += j;
+	}
+	return temp;
+}
