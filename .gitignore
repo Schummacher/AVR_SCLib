@@ -2,3 +2,10 @@ manual.toc
 manual.aux
 manual.synctex.gz
 *.log
+manual.out
+*.bbl
+manual.blg
+*.nav
+manual.snm
+*.bbl
+*.bbl

@@ -1,0 +1,65 @@
+\documentclass{article}
+\usepackage{ctex}
+\usepackage{listings} 
+\title{AVR\_SCLib manual}
+\usepackage[colorlinks,
+linkcolor=black,
+anchorcolor=blue,
+citecolor=green
+]{hyperref}
+\begin{document}
+\author{Schummacher S.J.F}
+\maketitle
+\newpage
+\tableofcontents
+\newpage
+\section{综述}
+作者本未想做一套轮子，但使用中深感不便，每次实现一些重复性强的功能都要重新写一遍，实在是不胜其烦就打算写一些自己用且简单粗暴的函数，但写着写着函数也就慢慢多了起来，渐渐的整理出来一些库，现在把他开源出来，希望用AVR的人可以少造一些轮子。\par
+至于为什么不用默认的README.md和Wiki嘛，我只能坦白的说我不会Markdown和Wiki只会\LaTeX
+\section{ADC}
+\subsection{ADC\_Date}
+\begin{lstlisting}[language=C]
+unsigned int ADC_Date(unsigned char i);
+\end{lstlisting}
+其中参量i是PA组的IO口数,返回左对齐的10bit采样
+\subsection{eg.}
+我们要采PA1的样，并将ADC采样值付给变量ADC\_temp:
+\begin{lstlisting}[language=C]
+ADC_temp =  ADC_Date(1);
+\end{lstlisting}
+\section{Devich}
+Device.h里面的文件有点类似于很多人写的main.h但是我在这里还增加了一些单片机常用的一些宏定义
+\begin{lstlisting}[language=C]
+#define LSL(x, y) x=x<<y
+#define LSR(x, y) x=x>>y
+\end{lstlisting}
+把x左/右移y位并将结果付给x
+\begin{lstlisting}[language=C]
+#define MAX(a, b) a>b?a:b
+#define MIN(a, b) a<b?a:b
+\end{lstlisting}
+返回a, b中最大/小的数
+\begin{lstlisting}[language=C]
+#define SEI asm("sei");
+#define CLI asm("cli");
+\end{lstlisting}
+全局中断使能/清除
+\section{EEPROM}
+\subsection{EEPROM\_write}
+\begin{lstlisting}[language=C]
+void EEPROM_write(unsigned int uiAddress, unsigned char ucData);
+\end{lstlisting}
+uiAddress是数据需要储存的地址，ucData是数据
+\subsection{EEPROM\_write}
+\begin{lstlisting}[language=C]
+unsigned char EEPROM_read(unsigned int uiAddress);
+\end{lstlisting}
+uiAddress是数据需要读出的地址，返回值是读出的数据
+\subsection{eg.}
+我们将变量i储存到地址0x00，然后将地址为0x01的数据读出到j
+\begin{lstlisting}[language=C]
+EEPROM_write(0x00, i);
+j = EEPROM_read(0x01);
+\end{lstlisting}
+
+\end{document}
