@@ -12,5 +12,16 @@
 #include "avr/io.h"
 
 unsigned int ADC_Date(unsigned char i);
+uint16_t ADC_Average_Get(uint8_t pin);
+
+typedef union _ADC_DATE
+{
+	struct
+	{
+		unsigned low : 8;
+		unsigned high : 8;
+	} half;
+	unsigned short all;
+} ADC_DATE;
 
 #endif /* ADC_H_ */
