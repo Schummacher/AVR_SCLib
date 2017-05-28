@@ -10,10 +10,10 @@
 
 unsigned int ADC_Date(unsigned char i)
 {
-	ADMUX = 0x60 + i;					//Vref = AVCC, result of adc right shift
-	ADCSRA = 0xC6;						//begin change time is 1/64
+	ADMUX = 0x60 + i;			//Vref = AVCC, result of adc right shift
+	ADCSRA = 0xC6;				//begin change time is 1/64
 	while(!(ADCSRA & (1 << ADIF)));		//wite compleat
-	ADCSRA |= (1 << ADIF);				//clear ADC INTRRUPT FLAG
+	ADCSRA |= (1 << ADIF);			//clear ADC INTRRUPT FLAG
 	return ADCH;
 }
 
