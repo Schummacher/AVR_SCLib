@@ -17,7 +17,7 @@ void USART_Init(void)
 	/* Set frame format: 8data, 2stop bit */
 	UCSRC = (1<<URSEL)|(1 << UCSZ1)|(1 << UCSZ0);
 }
-void USART_Transmit(unsigned char data)
+void USART_Transmit(uint8_t data)
 {
 	/* Wait for empty transmit buffer */
 	while (!( UCSRA & (1<<UDRE)));
@@ -25,7 +25,7 @@ void USART_Transmit(unsigned char data)
 	UDR = data;
 }
 
-unsigned char USART_Receive(void)
+uint8_t USART_Receive(void)
 {
 	/* Wait for data to be received */
 	while (!(UCSRA & (1<<RXC)));

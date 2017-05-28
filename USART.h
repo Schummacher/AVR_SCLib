@@ -14,8 +14,8 @@
 #include <avr/interrupt.h>
 
 void USART_Init(void);
-void USART_Transmit(unsigned char data);
-unsigned char USART_Receive(void);
+void USART_Transmit(uint8_t data);
+uint8_t USART_Receive(void);
 
 
 
