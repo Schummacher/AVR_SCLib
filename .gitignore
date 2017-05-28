@@ -5,3 +5,5 @@ manual.synctex.gz
 manual.bbl
 *.blg
 manual.out
+*.nav
+manual.snm
