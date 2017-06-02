@@ -13,8 +13,8 @@
 
 typedef struct Char_Complex
 {
-	uint8_t re;
-	uint8_t im;
+	float re;
+	float im;
 } char_complex;
 
 typedef char_complex cint8_t;
