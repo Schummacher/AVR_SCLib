@@ -19,7 +19,7 @@ typedef struct Char_Complex
 
 typedef char_complex cint8_t;
 
-cint8_t cadd(cint8_t val1, cint8_t val2);
-cint8_t csub(cint8_t val1, cint8_t val2);
+cint8_t cadd(cint8_t val_1, cint8_t val_2);
+cint8_t csub(cint8_t val_1, cint8_t val_2);
 
 #endif /* COMPLEX_H_ */

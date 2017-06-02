@@ -8,16 +8,16 @@
 
 #include "Complex.h"
 
-cint8_t cadd(cint8_t val1, cint8_t val2)
+cint8_t cadd(cint8_t val_1, cint8_t val_2)
 {
-	val1.re = val1.re + val2.re;
-	val1.im = val1.im + val2.im;
-	return val1;
+	val_1.re = val_1.re + val_2.re;
+	val_1.im = val_1.im + val_2.im;
+	return val_1;
 }
 
-cint8_t csub(cint8_t val1, cint8_t val2)
+cint8_t csub(cint8_t val_1, cint8_t val_2)
 {
-	val1.re = val1.re - val2.re;
-	val1.im = val1.im - val2.im;
-	return val1;
+	val_1.re = val_1.re - val_2.re;
+	val_1.im = val_1.im - val_2.im;
+	return val_1;
 }
