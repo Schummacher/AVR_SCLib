@@ -1,14 +1,13 @@
-#include "math.h"  
-#include "fft.h"  
-//精度0.0001弧度  
+#include "math.h" 
+#include "fft.h" 
 
 void conjugate_complex(int n, complex in[], complex out[])
 {
 	int i = 0;
 	for (i = 0; i<n; i++)
 	{
-		out[i].imag = -in[i].imag;
-		out[i].real = in[i].real;
+		out[i].Im = -in[i].Im;
+		out[i].Re = in[i].Re;
 	}
 }
 
@@ -18,7 +17,7 @@ void c_abs(complex f[], float out[], int n)
 	float t;
 	for (i = 0; i<n; i++)
 	{
-		t = f[i].real * f[i].real + f[i].imag * f[i].imag;
+		t = f[i].Re * f[i].Re + f[i].Im * f[i].Im;
 		out[i] = sqrt(t);
 	}
 }
@@ -26,39 +25,39 @@ void c_abs(complex f[], float out[], int n)
 
 void c_plus(complex a, complex b, complex *c)
 {
-	c->real = a.real + b.real;
-	c->imag = a.imag + b.imag;
+	c->Re = a.Re + b.Re;
+	c->Im = a.Im + b.Im;
 }
 
 void c_sub(complex a, complex b, complex *c)
 {
-	c->real = a.real - b.real;
-	c->imag = a.imag - b.imag;
+	c->Re = a.Re - b.Re;
+	c->Im = a.Im - b.Im;
 }
 
 void c_mul(complex a, complex b, complex *c)
 {
-	c->real = a.real * b.real - a.imag * b.imag;
-	c->imag = a.real * b.imag + a.imag * b.real;
+	c->Re = a.Re * b.Re - a.Im * b.Im;
+	c->Im = a.Re * b.Im + a.Im * b.Re;
 }
 
 void c_div(complex a, complex b, complex *c)
 {
-	c->real = (a.real * b.real + a.imag * b.imag) / (b.real * b.real + b.imag * b.imag);
-	c->imag = (a.imag * b.real - a.real * b.imag) / (b.real * b.real + b.imag * b.imag);
+	c->Re = (a.Re * b.Re + a.Im * b.Im) / (b.Re * b.Re + b.Im * b.Im);
+	c->Im = (a.Im * b.Re - a.Re * b.Im) / (b.Re * b.Re + b.Im * b.Im);
 }
 
 void Wn_i(int n, int i, complex *Wn, char flag)
 {
-	Wn->real = cos(2 * PI*i / n);
+	Wn->Re = cos(2 * PI*i / n);
 	if (flag == 1)
-		Wn->imag = -sin(2 * PI*i / n);
+		Wn->Im = -sin(2 * PI*i / n);
 	else if (flag == 0)
-		Wn->imag = -sin(2 * PI*i / n);
+		Wn->Im = -sin(2 * PI*i / n);
 }
 
 //傅里叶变化  
-void fft(int N, complex f[])
+void FFT(int N, complex f[])
 {
 	complex t, wn;//中间变量  
 	int i, j, k, m, n, l, r, M;
@@ -92,7 +91,7 @@ void fft(int N, complex f[])
 						/*----碟形运算----*/
 		for (l = 1; l <= lb; l++)
 		{
-			r = (l - 1)*pow(2, M - m);
+			r = (l - 1) * pow(2, M - m);
 			for (n = l - 1; n<N - 1; n = n + la) //遍历每个分组，分组总数为N/la  
 			{
 				lc = n + lb;  //n,lc分别代表一个碟形单元的上、下节点编号       
@@ -106,15 +105,37 @@ void fft(int N, complex f[])
 }
 
 //傅里叶逆变换  
-void ifft(int N, complex f[])
+void IFFT(int N, complex f[])
 {
 	int i = 0;
 	conjugate_complex(N, f, f);
-	fft(N, f);
+	FFT(N, f);
 	conjugate_complex(N, f, f);
 	for (i = 0; i<N; i++)
 	{
-		f[i].imag = (f[i].imag) / N;
-		f[i].real = (f[i].real) / N;
+		f[i].Im = (f[i].Im) / N;
+		f[i].Re = (f[i].Re) / N;
+	}
+}
+
+void DFT(complex *data, complex *X, int K)
+{
+	complex tmp1, tmp2;
+	int k, h;
+	double p;
+	for (k = 0; k < K; k++)
+	{
+		tmp1.Re = 0;
+		tmp1.Im = 0;
+		for (h = 0; h < K; h++)
+		{
+			p = (double)((k * h) % K);
+			tmp2.Re = cos(-2 * PI * p / K);
+			tmp2.Im = sin(-2 * PI * p / K);
+			tmp1.Re += data[h].Re * tmp2.Re - data[h].Im * tmp2.Im;
+			tmp1.Im += data[h].Im * tmp2.Re + data[h].Re * tmp2.Im;
+		}
+		X[k].Re = tmp1.Re;
+		X[k].Im = tmp1.Im;
 	}
 }
