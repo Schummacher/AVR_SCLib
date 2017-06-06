@@ -11,7 +11,7 @@
 
 #include "avr/io.h"
 
-unsigned int ADC_Date(unsigned char i);
+uint8_t ADC_Date(uint8_t i);
 uint16_t ADC_Average_Get(uint8_t pin);
 
 typedef union _ADC_DATE

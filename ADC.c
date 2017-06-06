@@ -8,7 +8,7 @@
 #include "avr/io.h"
 #include "ADC.h"
 
-unsigned int ADC_Date(unsigned char i)
+uint8_t ADC_Date(uint8_t i)
 {
 	ADMUX = 0x60 + i;			//Vref = AVCC, result of adc right shift
 	ADCSRA = 0xC6;				//begin change time is 1/64

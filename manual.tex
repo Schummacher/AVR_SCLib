@@ -1,4 +1,4 @@
-\documentclass{article}
+\documentclass{report}
 \usepackage{ctex}
 \usepackage{listings}
 \title{AVR\_SCLib manual}
@@ -13,19 +13,26 @@ citecolor=green
 \newpage
 \tableofcontents
 \newpage
-\section{综述}
+\chapter{综述}
 作者本未想做一套轮子，但使用中深感不便，每次实现一些重复性强的功能都要重新写一遍，实在是不胜其烦就打算写一些自己用且简单粗暴的函数，但写着写着函数也就慢慢多了起来，渐渐的整理出来一些库，现在把他开源出来，希望用AVR的人可以少造一些轮子。\par
 至于为什么不用默认的README.md和Wiki嘛，我只能坦白的说我不会Markdown和Wiki只会\LaTeX
+\chapter{函数库使用}
 \section{ADC}
 \subsection{ADC\_Date}
 \begin{lstlisting}[language=C]
-unsigned int ADC_Date(unsigned char i);
+uint8_t ADC_Date(uint8_t i);
 \end{lstlisting}
 其中参量i是PA组的IO口数,返回左对齐的10bit采样
+\subsection{ADC\_Average\_Get}
+\begin{lstlisting}[language=C]
+uint16_t ADC_Average_Get(uint8_t pin);
+\end{lstlisting}
+进行8次AD采样然后去平均值，返回无符号16位采样信号，参量i是PA所对应的端口号
 \subsection{eg.}
 我们要采PA1的样，并将ADC采样值付给变量ADC\_temp:
 \begin{lstlisting}[language=C]
-ADC_temp =  ADC_Date(1);
+ADC_temp_1 = ADC_Date(1);
+ADC_temp_2 = ADC_Average_Get(1);
 \end{lstlisting}
 \section{Devich}
 Device.h里面的文件有点类似于很多人写的main.h但是我在这里还增加了一些单片机常用的一些宏定义
