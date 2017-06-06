@@ -1,6 +1,8 @@
 # AVR_SCLib
 There is a manual called manual.tex in Chinese.
 
+##### This lib depends on avr-gcc 4.6 and ATmega16A
+
 Common library of AVR ATmega16
 -----
 
