@@ -23,14 +23,12 @@
 #define EN_0  PORTC &= ~(1 << PC6)	//EN = 0
 #define EN_1  PORTC |= (1 << PC6)	//EN = 1
 
-
+void LCD_Clr(void);
+void LCD_Init(void);
 void LCD_Wcmd(uint8_t cmd);
-void LCD_Wdat(uint8_t dat) ;
-void LCD_Clr(void)  ;
-void LCD_Init(void) ;
+void LCD_Wdat(uint8_t dat);
 void LocateXY(uint8_t x,uint8_t y) ;
-void LCD_Write_Char(uint8_t x,uint8_t y,uint8_t data) ;
-void LCD_Write_Str(uint8_t x,uint8_t y, uint8_t *s);
-
+void LCD_Write_Char(uint8_t x, uint8_t y, uint8_t data);
+void LCD_Write_Str(uint8_t x, uint8_t y, char *s);
 
 #endif /* LCD_H_ */
