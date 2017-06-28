@@ -74,7 +74,7 @@ void LocateXY(uint8_t x,uint8_t y)
 }
 
 /******FUN of transmit string******/
-void LCD_Write_Str(uint8_t x,uint8_t y,uint8_t *s)
+void LCD_Write_Str(uint8_t x, uint8_t y, char *s)
 {
 	LocateXY(x,y);          //locate cursor
 	while (*s)
@@ -85,7 +85,7 @@ void LCD_Write_Str(uint8_t x,uint8_t y,uint8_t *s)
 }
 
 /******FUN of tansmit char******/
-void LCD_Write_Char(uint8_t x,uint8_t y,uint8_t data)
+void LCD_Write_Char(uint8_t x, uint8_t y, uint8_t data)
 {
 	LocateXY(x,y);          //locate cursor
 	LCD_Wdat(data);
