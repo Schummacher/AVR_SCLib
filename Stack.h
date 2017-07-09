@@ -18,8 +18,8 @@
 #define POP(VAL) VAL=Pop(_DEFULT)
 #define CLEAN Clean(_DEFULT)
 
-void Pop(uint8_t *num, uint8_t data);
-uint8_t Push(uint8_t *num);
+void Push(uint8_t *num, uint8_t data);
+uint8_t Pop(uint8_t *num);
 void Clean(uint8_t *num);
 
 #endif /* ADC_H_ */
