@@ -11,6 +11,7 @@
 
 #include "avr/io.h"
 #include "MyLcd.h"
+#include <stdint-gcc.h>
 
 void my_display_3(uint8_t x, uint8_t y, uint32_t i);
 void my_display_4(uint8_t x, uint8_t y, uint32_t i);

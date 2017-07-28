@@ -9,6 +9,8 @@
 #ifndef SORT_H_
 #define SORT_H_
 
+#include <stdint-gcc.h>
+
 void Shellsort(uint8_t A[ ], uint8_t N);
 
 #endif /* SORT_H_ */
