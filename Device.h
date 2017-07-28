@@ -18,7 +18,7 @@
 #include "MyLcd.h"        //LCD contral pro
 #include "Sort.h"
 #include "List.h"
-#include "Cmp.h"
+#include "Filter.h"
 
 #define LSL(x, y) x=x<<y
 #define LSR(x, y) x=x>>y
