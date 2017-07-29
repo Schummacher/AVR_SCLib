@@ -11,6 +11,7 @@
 
 #include <stdint-gcc.h>
 
-void Shellsort(uint8_t A[ ], uint8_t N);
+void Shellsort_8bit(uint8_t A[ ], uint8_t N);
+void Shellsort_16bit(uint16_t A[ ], uint8_t N);
 
 #endif /* SORT_H_ */
