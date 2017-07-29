@@ -2,7 +2,7 @@
  * Filter.c
  *
  * Created: 2017/7/28 下午 5:58:39
- *  Author: schummacher
+ *  Author: YWL
  */ 
 
 #include "Filter.h"
