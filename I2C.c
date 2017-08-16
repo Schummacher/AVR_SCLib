@@ -1,56 +1,30 @@
-/*
+ï»¿/*
  * I2C.c
  *
- * Created: 2016/9/22 12:32:55
- *  Author: dusch
+ * Created: 2017/8/15 PM 5:24:28
+ *  Author: schummacher
  */ 
 
 #include "I2C.h"
 
- /******** TWI½Ó¿ÚµÄ³õÊ¼»¯º¯Êý********/
 void I2C_Init(void)
 {
-	TWAR = 0x00;         	//Ö÷»úÄ£Ê½£¬¸ÃµØÖ·ÎÞÐ§
-	TWCR = 0x00;         	//¹Ø±ÕTWIÄ£¿é
-	TWBR = 100;        //100
-	TWSR = 0x03;         //64·ÖÆµ
- }
- /********½«Write_dataÐ´ÈëAT24C04ÄÚ²¿µÄÒÔEE_addressÎªµØÖ·µÄ´æ´¢Çø********/
-void I2C_Write(unsigned char Write_data, unsigned char EE_address)
-{
-	TWCR = (1<<TWINT) | (1<<TWEN) | (1<<TWSTA);
-	while(!(TWCR & (1<<TWINT)));  //0x08
-	TWDR = SLA_W;
-	TWCR = (1<<TWINT) | (1<<TWEN);
-	while(!(TWCR & (1<<TWINT)));  //0x18
-	TWDR = EE_address;
-	TWCR = (1<<TWINT) | (1<<TWEN);
-	while(!(TWCR & (1<<TWINT)));  //0x28
-	TWDR = Write_data;
-	TWCR = (1<<TWINT) | (1<<TWEN);
-	while(!(TWCR & (1<<TWINT)));  //0x28
-	TWCR = (1<<TWINT) | (1<<TWEN) | (1<<TWSTO);
+	TWCR = 0x00;
+	TWBR = 100;
+	TWSR = 0x03;
 }
-/********´ÓAT24C04ÄÚ²¿µÄÒÔEE_addressÎªµØÖ·µÄ´æ´¢Çø¶Á³öÊý¾Ý********/
-unsigned char I2C_Read(unsigned char EE_address)
+
+void I2C_Slave(uint8_t address)
 {
-	unsigned char temp;
-	TWCR = (1<<TWINT) | (1<<TWEN) | (1<<TWSTA);
-	while(!(TWCR & (1<<TWINT)));
-	TWDR = SLA_W;
-	TWCR = (1<<TWINT) | (1<<TWEN);
-	while(!(TWCR & (1<<TWINT)));
-	TWDR = EE_address;
-	TWCR = (1<<TWINT) | (1<<TWEN);
-	while(!(TWCR & (1<<TWINT)));
-	TWCR = (1<<TWINT) | (1<<TWEN) | (1<<TWSTA);
-	while(!(TWCR & (1<<TWINT)));
-	TWDR = SLA_R;
-	TWCR = (1<<TWINT) | (1<<TWEN);
-	while(!(TWCR & (1<<TWINT)));
-	TWCR = (1<<TWINT) | (1<<TWEN);
-	while(!(TWCR & (1<<TWINT)));
-	temp = TWDR;
-	TWCR = (1<<TWINT) | (1<<TWEN) | (1<<TWSTO);
-	return temp;
+	TWAR = (address << 1) | 0x01;
+}
+
+void I2C_Master(void)
+{
+	TWAR = 0x00;
+}
+
+void I2C_Wait(void)
+{
+	while (! (TWCR & (1 << TWINT)));
 }

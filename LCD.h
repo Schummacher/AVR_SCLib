@@ -17,11 +17,11 @@
 #define DDR DDRB
 #define PIN PINB
 #define RS_0  PORTC &= ~(1 << PC7) 	//RS = 0
-#define RS_1  PORTC |= (1 << PC7)	//RS = 1
+#define RS_1  PORTC |=  (1 << PC7)	//RS = 1
 #define RW_0  PORTD &= ~(1 << PC5)	//RW = 0
-#define RW_1  PORTD |= (1 << PC5)	//RW = 1
+#define RW_1  PORTD |=  (1 << PC5)	//RW = 1
 #define EN_0  PORTC &= ~(1 << PC6)	//EN = 0
-#define EN_1  PORTC |= (1 << PC6)	//EN = 1
+#define EN_1  PORTC |=  (1 << PC6)	//EN = 1
 
 void LCD_Clr(void);
 void LCD_Init(void);
