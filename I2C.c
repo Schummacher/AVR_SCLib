@@ -1,30 +1,56 @@
-﻿/*
+/*
  * I2C.c
  *
- * Created: 2017/8/15 PM 5:24:28
- *  Author: schummacher
+ * Created: 2016/9/22 12:32:55
+ *  Author: dusch
  */ 
 
 #include "I2C.h"
 
+ /******** TWI接口的初始化函数********/
 void I2C_Init(void)
 {
-	TWCR = 0x00;
-	TWBR = 100;
-	TWSR = 0x03;
+	TWAR = 0x00;		//MASTER MODE
+	TWCR = 0x00;		//CLOSE TWI
+	TWBR = 100;			//100
+	TWSR = 0x03;		//64
 }
 
-void I2C_Slave(uint8_t address)
+void AT24CXX_Write(uint8_t chip_address, uint8_t data_address, uint8_t data)
 {
-	TWAR = (address << 1) | 0x01;
+	I2C_START;
+	I2C_WAIT;
+	I2C_LOAD(chip_address);
+	I2C_TRANSMIT;
+	I2C_WAIT;
+	I2C_LOAD(data_address);
+	I2C_TRANSMIT;
+	I2C_WAIT;
+	I2C_LOAD(data);
+	I2C_TRANSMIT;
+	I2C_WAIT;
+	I2C_STOP;
 }
 
-void I2C_Master(void)
+uint8_t AT24CXX_Read(uint8_t chip_address, uint8_t data_address)
 {
-	TWAR = 0x00;
-}
-
-void I2C_Wait(void)
-{
-	while (! (TWCR & (1 << TWINT)));
+	uint8_t data;
+	I2C_START;
+	I2C_WAIT;
+	I2C_LOAD(chip_address);
+	I2C_TRANSMIT;
+	I2C_WAIT;
+	I2C_LOAD(data_address);
+	I2C_TRANSMIT;
+	I2C_WAIT;
+	I2C_START;
+	I2C_WAIT;
+	I2C_LOAD(chip_address);
+	I2C_TRANSMIT;
+	I2C_WAIT;
+	I2C_TRANSMIT;
+	I2C_WAIT;
+	I2C_RECEIVE(data);
+	I2C_STOP;
+	return data;
 }

@@ -15,6 +15,7 @@
 
 void my_display_3(uint8_t x, uint8_t y, uint32_t i);
 void my_display_4(uint8_t x, uint8_t y, uint32_t i);
+void my_display_6(uint8_t x, uint8_t y, uint8_t i);
 
 extern uint8_t display[3];
 

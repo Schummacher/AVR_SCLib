@@ -5,7 +5,7 @@
  *  Author: dusch
  */ 
 
-#include "Device.h"
+#include "LCD.h"
 
 /************************************************************************/
 /* ShuiXianHua and Display                                              */
@@ -36,4 +36,14 @@ void my_display_4(uint8_t x, uint8_t y, uint32_t i)
 	LCD_Wdat(display[1]);
 	LCD_Wdat(display[2]);
 	LCD_Wdat(display[3]);
+}
+
+void my_display_6(uint8_t x, uint8_t y, uint8_t i)
+{
+	char base[16] = { '0','1','2','3','4','5','6','7','8','9','A','B','C','D','E','F' };
+	LocateXY(x, y);
+	LCD_Wdat('0');
+	LCD_Wdat('x');
+	LCD_Wdat(base[i / 16]);
+	LCD_Wdat(base[i % 16]);
 }
