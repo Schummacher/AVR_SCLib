@@ -20,3 +20,8 @@ His home page https://github.com/KrisYWL
 
 For some reason I decide changing platform from ATmega16 to ATmega328, so some library will being changed stap by stap.
 
+Authors
+---
+
+- [YWL](https://github.com/KrisYWL)
+- [SJF](https://github.com/Schummacher)
