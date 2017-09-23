@@ -4,7 +4,7 @@
 
 #include "Convolution.h"
 
-void convolution(sequence *y, sequence *x, sequence *h)
+void Convolution(sequence *y, sequence *x, sequence *h)
 {
 	for (int i = 0; i < x->length; i++)
 		for (int j = 0; j < h->length; j++)
