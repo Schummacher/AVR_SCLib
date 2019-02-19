@@ -13,20 +13,30 @@
 #include <stdlib.h>
 #include <stdbool.h>
 
-typedef struct _list list;
-typedef uint8_t ElementType;
+struct _list_i
+{
+    int dat;
+    struct _list_i *next;
+    struct _list_i *front;
+};
+
+typedef struct _list_i list_i;
 
 struct _list
 {
-	ElementType num;
-	struct _list *next;
+    list_i *first;
+    list_i *last;
+    int length;
 };
 
+typedef struct _list list;
 
-void List_Insert(ElementType data, list *L);	
-_Bool List_if_Empty(list *L);
-list *List_Find(ElementType data, list *L);
-void List_Delete(ElementType data, list *L);
-
+void push(int dat, list *L);
+int pop(list *L);
+void creat(int dat, list *L);
+void append(int dat, list *L);
+int out(list *L);
+void clear(list *L);
+void insert(int dat, int times, list *L, int count);
 
 #endif /* LIST_H_ */
