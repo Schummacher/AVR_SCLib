@@ -15,18 +15,18 @@
 
 struct _list_i
 {
-    int dat;
-    struct _list_i *next;
-    struct _list_i *front;
+	int dat;
+	struct _list_i *next;
+	struct _list_i *front;
 };
 
 typedef struct _list_i list_i;
 
 struct _list
 {
-    list_i *first;
-    list_i *last;
-    int length;
+	list_i *first;
+	list_i *last;
+	int length;
 };
 
 typedef struct _list list;
@@ -37,6 +37,16 @@ void creat(int dat, list *L);
 void append(int dat, list *L);
 int out(list *L);
 void clear(list *L);
-void insert(int dat, int times, list *L, int count);
+// void insert(int dat, int times, list *L, int count);
+list *combian(list *A, list *B);
+//void sort(list *L);
+int find(int count, list *L, int face);
+
+
+//TODO
+//insert
+//remove
+//sort
+
 
 #endif /* LIST_H_ */
